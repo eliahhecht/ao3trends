@@ -1,0 +1,7 @@
+TableName: 'Works'
+AttributeDefinitions:
+- AttributeName: "work_id"
+  AttributeType: "N"
+ProvisionedThroughput:
+  ReadCapacityUnits: 10
+  WriteCapacityUnits: 5

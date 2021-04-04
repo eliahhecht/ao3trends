@@ -1,0 +1,10 @@
+TableName: 'AllTimeStats'
+AttributeDefinitions:
+- AttributeName: "fandom_name"
+  AttributeType: "S"
+KeySchema:
+- AttributeName: "fandom_name"
+  KeyType: "HASH"
+ProvisionedThroughput:
+  ReadCapacityUnits: 10
+  WriteCapacityUnits: 5

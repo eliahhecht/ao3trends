@@ -1,0 +1,10 @@
+TableName: 'Works'
+AttributeDefinitions:
+- AttributeName: "work_id"
+  AttributeType: "N"
+KeySchema:
+- AttributeName: "work_id"
+  KeyType: "HASH"
+ProvisionedThroughput:
+  ReadCapacityUnits: 10
+  WriteCapacityUnits: 5
