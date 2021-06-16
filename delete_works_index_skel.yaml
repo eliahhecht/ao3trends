@@ -1,0 +1,56 @@
+AttributeDefinitions:  # An array of attributes that describe the key schema for the table and indexes.
+- AttributeName: ''  # [REQUIRED] A name for the attribute.
+  AttributeType: B # [REQUIRED] The data type for the attribute, where. Valid values are: S, N, B.
+TableName: '' # [REQUIRED] The name of the table to be updated.
+BillingMode: PAY_PER_REQUEST # Controls how you are charged for read and write throughput and how you manage capacity. Valid values are: PROVISIONED, PAY_PER_REQUEST.
+ProvisionedThroughput: # The new provisioned throughput settings for the specified table or index.
+  ReadCapacityUnits: 0  # [REQUIRED] The maximum number of strongly consistent reads consumed per second before DynamoDB returns a ThrottlingException.
+  WriteCapacityUnits: 0 # [REQUIRED] The maximum number of writes consumed per second before DynamoDB returns a ThrottlingException.
+GlobalSecondaryIndexUpdates: # An array of one or more global secondary indexes for the table.
+- Update:  # The name of an existing global secondary index, along with new provisioned throughput settings to be applied to that index.
+    IndexName: ''  # [REQUIRED] The name of the global secondary index to be updated.
+    ProvisionedThroughput: # [REQUIRED] Represents the provisioned throughput settings for the specified global secondary index.
+      ReadCapacityUnits: 0  # [REQUIRED] The maximum number of strongly consistent reads consumed per second before DynamoDB returns a ThrottlingException.
+      WriteCapacityUnits: 0 # [REQUIRED] The maximum number of writes consumed per second before DynamoDB returns a ThrottlingException.
+  Create: # The parameters required for creating a global secondary index on an existing table.
+    IndexName: ''  # [REQUIRED] The name of the global secondary index to be created.
+    KeySchema: # [REQUIRED] The key schema for the global secondary index.
+    - AttributeName: ''  # [REQUIRED] The name of a key attribute.
+      KeyType: HASH # [REQUIRED] The role that this key attribute will assume. Valid values are: HASH, RANGE.
+    Projection: # [REQUIRED] Represents attributes that are copied (projected) from the table into an index.
+      ProjectionType: KEYS_ONLY  # The set of attributes that are projected into the index. Valid values are: ALL, KEYS_ONLY, INCLUDE.
+      NonKeyAttributes: # Represents the non-key attribute names which will be projected into the index.
+      - ''
+    ProvisionedThroughput: # Represents the provisioned throughput settings for the specified global secondary index.
+      ReadCapacityUnits: 0  # [REQUIRED] The maximum number of strongly consistent reads consumed per second before DynamoDB returns a ThrottlingException.
+      WriteCapacityUnits: 0 # [REQUIRED] The maximum number of writes consumed per second before DynamoDB returns a ThrottlingException.
+  Delete: # The name of an existing global secondary index to be removed.
+    IndexName: ''  # [REQUIRED] The name of the global secondary index to be deleted.
+StreamSpecification: # Represents the DynamoDB Streams configuration for the table.
+  StreamEnabled: true  # [REQUIRED] Indicates whether DynamoDB Streams is enabled (true) or disabled (false) on the table.
+  StreamViewType: NEW_IMAGE #  When an item in the table is modified, StreamViewType determines what information is written to the stream for this table. Valid values are: NEW_IMAGE, OLD_IMAGE, NEW_AND_OLD_IMAGES, KEYS_ONLY.
+SSESpecification: # The new server-side encryption settings for the specified table.
+  Enabled: true  # Indicates whether server-side encryption is done using an AWS managed CMK or an AWS owned CMK.
+  SSEType: KMS # Server-side encryption type. Valid values are: AES256, KMS.
+  KMSMasterKeyId: '' # The AWS KMS customer master key (CMK) that should be used for the AWS KMS encryption.
+ReplicaUpdates: # A list of replica update actions (create, delete, or update) for the table.
+- Create:  # The parameters required for creating a replica for the table.
+    RegionName: ''  # [REQUIRED] The Region where the new replica will be created.
+    KMSMasterKeyId: '' # The AWS KMS customer master key (CMK) that should be used for AWS KMS encryption in the new replica.
+    ProvisionedThroughputOverride: # Replica-specific provisioned throughput.
+      ReadCapacityUnits: 0  # Replica-specific read capacity units.
+    GlobalSecondaryIndexes: # Replica-specific global secondary index settings.
+    - IndexName: ''  # [REQUIRED] The name of the global secondary index.
+      ProvisionedThroughputOverride: # Replica table GSI-specific provisioned throughput.
+        ReadCapacityUnits: 0  # Replica-specific read capacity units.
+  Update: # The parameters required for updating a replica for the table.
+    RegionName: ''  # [REQUIRED] The Region where the replica exists.
+    KMSMasterKeyId: '' # The AWS KMS customer master key (CMK) of the replica that should be used for AWS KMS encryption.
+    ProvisionedThroughputOverride: # Replica-specific provisioned throughput.
+      ReadCapacityUnits: 0  # Replica-specific read capacity units.
+    GlobalSecondaryIndexes: # Replica-specific global secondary index settings.
+    - IndexName: ''  # [REQUIRED] The name of the global secondary index.
+      ProvisionedThroughputOverride: # Replica table GSI-specific provisioned throughput.
+        ReadCapacityUnits: 0  # Replica-specific read capacity units.
+  Delete: # The parameters required for deleting a replica for the table.
+    RegionName: ''  # [REQUIRED] The Region where the replica exists.
