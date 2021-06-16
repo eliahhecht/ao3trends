@@ -1,10 +1,22 @@
-TableName: 'Works'
+TableName: "Works"
 AttributeDefinitions:
-- AttributeName: "work_id"
-  AttributeType: "N"
+  - AttributeName: "work_id"
+    AttributeType: "N"
+  - AttributeName: "posted_seconds_since_epoch"
+    AttributeType: "N"
 KeySchema:
-- AttributeName: "work_id"
-  KeyType: "HASH"
+  - AttributeName: "work_id"
+    KeyType: "HASH"
 ProvisionedThroughput:
   ReadCapacityUnits: 10
   WriteCapacityUnits: 5
+GlobalSecondaryIndexes:
+  - IndexName: "WorksByPostedDate"
+    KeySchema:
+      - AttributeName: "posted_seconds_since_epoch"
+        KeyType: "HASH"
+    Projection:
+      ProjectionType: "KEYS_ONLY"
+    ProvisionedThroughput:
+      ReadCapacityUnits: 10
+      WriteCapacityUnits: 5

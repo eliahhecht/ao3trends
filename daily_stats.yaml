@@ -1,14 +1,14 @@
-TableName: 'DailyStats'
+TableName: "AllTimeStats"
 AttributeDefinitions:
-- AttributeName: "posted_seconds_since_epoch"
-  AttributeType: "N"
-- AttributeName: "fandom_name"
-  AttributeType: "S"
+  - AttributeName: "posted_seconds_since_epoch"
+    AttributeType: "N"
+  - AttributeName: "fandom_name"
+    AttributeType: "S"
 KeySchema:
-- AttributeName: "posted_seconds_since_epoch"
-  KeyType: "HASH"
-- AttributeName: "fandom_name"
-  KeyType: "RANGE"
+  - AttributeName: "posted_seconds_since_epoch"
+    KeyType: "HASH"
+  - AttributeName: "fandom_name"
+    KeyType: "RANGE"
 ProvisionedThroughput:
   ReadCapacityUnits: 10
   WriteCapacityUnits: 5
